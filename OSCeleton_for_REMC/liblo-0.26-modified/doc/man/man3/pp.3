@@ -1,0 +1,73 @@
+.TH "Prettyprinting functions" 3 "Thu May 23 2013" "Version 0.26" "liblo" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Prettyprinting functions \- 
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBlo_bundle_pp\fP (\fBlo_bundle\fP b)"
+.br
+.RI "\fIPretty-print a lo_bundle object\&. \fP"
+.ti -1c
+.RI "void \fBlo_message_pp\fP (\fBlo_message\fP m)"
+.br
+.RI "\fIPretty-print a lo_message object\&. \fP"
+.ti -1c
+.RI "void \fBlo_arg_pp\fP (\fBlo_type\fP type, void *data)"
+.br
+.RI "\fIPretty-print a set of typed arguments\&. \fP"
+.ti -1c
+.RI "void \fBlo_server_pp\fP (\fBlo_server\fP s)"
+.br
+.RI "\fIPretty-print a lo_server object\&. \fP"
+.ti -1c
+.RI "void \fBlo_method_pp\fP (\fBlo_method\fP m)"
+.br
+.RI "\fIPretty-print a lo_method object\&. \fP"
+.ti -1c
+.RI "void \fBlo_method_pp_prefix\fP (\fBlo_method\fP m, const char *p)"
+.br
+.RI "\fIPretty-print a lo_method object, but prepend a given prefix to all field names\&. \fP"
+.ti -1c
+.RI "void \fBlo_server_thread_pp\fP (\fBlo_server_thread\fP st)"
+.br
+.RI "\fIPretty-print a lo_server_thread object\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+These functions all print an ASCII representation of their argument to stdout\&. Useful for debugging\&. 
+.SH "Function Documentation"
+.PP 
+.SS "void \fBlo_arg_pp\fP (\fBlo_type\fPtype, void *data)"
+.PP
+Pretty-print a set of typed arguments\&. \fBParameters:\fP
+.RS 4
+\fItype\fP A type string in the form provided to \fBlo_send()\fP\&. 
+.br
+\fIdata\fP An OSC data pointer, like that provided in the lo_method_handler\&. 
+.RE
+.PP
+
+.SS "void \fBlo_bundle_pp\fP (\fBlo_bundle\fPb)"
+.PP
+Pretty-print a lo_bundle object\&. 
+.SS "void \fBlo_message_pp\fP (\fBlo_message\fPm)"
+.PP
+Pretty-print a lo_message object\&. 
+.SS "void \fBlo_method_pp\fP (\fBlo_method\fPm)"
+.PP
+Pretty-print a lo_method object\&. 
+.SS "void \fBlo_method_pp_prefix\fP (\fBlo_method\fPm, const char *p)"
+.PP
+Pretty-print a lo_method object, but prepend a given prefix to all field names\&. 
+.SS "void \fBlo_server_pp\fP (\fBlo_server\fPs)"
+.PP
+Pretty-print a lo_server object\&. 
+.SS "void \fBlo_server_thread_pp\fP (\fBlo_server_thread\fPst)"
+.PP
+Pretty-print a lo_server_thread object\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for liblo from the source code\&.

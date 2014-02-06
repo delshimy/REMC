@@ -1,0 +1,30 @@
+<jmess>
+  <connection>
+    <output>system:capture_1</output>
+    <input>SuperCollider:in_1</input>
+  </connection>
+  <connection>
+    <output>SuperCollider:out_1</output>
+    <input>system:playback_1</input>
+  </connection>
+  <connection>
+    <output>SuperCollider:out_1</output>
+    <input>ardour:master/in 1</input>
+  </connection>
+  <connection>
+    <output>SuperCollider:out_2</output>
+    <input>system:playback_2</input>
+  </connection>
+  <connection>
+    <output>SuperCollider:out_2</output>
+    <input>ardour:master/in 2</input>
+  </connection>
+  <connection>
+    <output>ardour:Musician_1/out 1</output>
+    <input>SuperCollider:in_2</input>
+  </connection>
+  <connection>
+    <output>ardour:Musician_2/out 1</output>
+    <input>SuperCollider:in_3</input>
+  </connection>
+</jmess>

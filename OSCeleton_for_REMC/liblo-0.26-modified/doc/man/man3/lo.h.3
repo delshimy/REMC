@@ -1,0 +1,126 @@
+.TH "lo.h" 3 "Thu May 23 2013" "Version 0.26" "liblo" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+lo.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBlo_address\fP \fBlo_address_new\fP (const char *host, const char *port)"
+.br
+.RI "\fIDeclare an OSC destination, given IP address and port number\&. Same as \fBlo_address_new_with_proto()\fP, but using UDP\&. \fP"
+.ti -1c
+.RI "\fBlo_address\fP \fBlo_address_new_with_proto\fP (int proto, const char *host, const char *port)"
+.br
+.RI "\fIDeclare an OSC destination, given IP address and port number, specifying protocol\&. \fP"
+.ti -1c
+.RI "\fBlo_address\fP \fBlo_address_new_from_url\fP (const char *url)"
+.br
+.RI "\fICreate a lo_address object from an OSC URL\&. \fP"
+.ti -1c
+.RI "void \fBlo_address_free\fP (\fBlo_address\fP t)"
+.br
+.RI "\fIFree the memory used by the lo_address object\&. \fP"
+.ti -1c
+.RI "void \fBlo_address_set_ttl\fP (\fBlo_address\fP t, int ttl)"
+.br
+.RI "\fISet the Time-to-Live value for a given target address\&. \fP"
+.ti -1c
+.RI "int \fBlo_address_get_ttl\fP (\fBlo_address\fP t)"
+.br
+.RI "\fIGet the Time-to-Live value for a given target address\&. \fP"
+.ti -1c
+.RI "int \fBlo_send\fP (\fBlo_address\fP targ, const char *path, const char *type,\&.\&.\&.)"
+.br
+.RI "\fISend a OSC formatted message to the address specified\&. \fP"
+.ti -1c
+.RI "int \fBlo_send_from\fP (\fBlo_address\fP targ, \fBlo_server\fP from, \fBlo_timetag\fP ts, const char *path, const char *type,\&.\&.\&.)"
+.br
+.RI "\fISend a OSC formatted message to the address specified, from the same socket as the specificied server\&. \fP"
+.ti -1c
+.RI "int \fBlo_send_timestamped\fP (\fBlo_address\fP targ, \fBlo_timetag\fP ts, const char *path, const char *type,\&.\&.\&.)"
+.br
+.RI "\fISend a OSC formatted message to the address specified, scheduled to be dispatch at some time in the future\&. \fP"
+.ti -1c
+.RI "int \fBlo_address_errno\fP (\fBlo_address\fP a)"
+.br
+.RI "\fIReturn the error number from the last failed \fBlo_send()\fP or \fBlo_address_new()\fP call\&. \fP"
+.ti -1c
+.RI "const char * \fBlo_address_errstr\fP (\fBlo_address\fP a)"
+.br
+.RI "\fIReturn the error string from the last failed \fBlo_send()\fP or \fBlo_address_new()\fP call\&. \fP"
+.ti -1c
+.RI "\fBlo_server_thread\fP \fBlo_server_thread_new\fP (const char *port, \fBlo_err_handler\fP err_h)"
+.br
+.RI "\fICreate a new server thread to handle incoming OSC messages\&. \fP"
+.ti -1c
+.RI "\fBlo_server_thread\fP \fBlo_server_thread_new_multicast\fP (const char *group, const char *port, \fBlo_err_handler\fP err_h)"
+.br
+.RI "\fICreate a new server thread to handle incoming OSC messages, and join a UDP multicast group\&. \fP"
+.ti -1c
+.RI "\fBlo_server_thread\fP \fBlo_server_thread_new_with_proto\fP (const char *port, int proto, \fBlo_err_handler\fP err_h)"
+.br
+.RI "\fICreate a new server thread to handle incoming OSC messages, specifying protocol\&. \fP"
+.ti -1c
+.RI "void \fBlo_server_thread_free\fP (\fBlo_server_thread\fP st)"
+.br
+.RI "\fIFree memory taken by a server thread\&. \fP"
+.ti -1c
+.RI "\fBlo_method\fP \fBlo_server_thread_add_method\fP (\fBlo_server_thread\fP st, const char *path, const char *typespec, \fBlo_method_handler\fP h, void *user_data)"
+.br
+.RI "\fIAdd an OSC method to the specifed server thread\&. \fP"
+.ti -1c
+.RI "void \fBlo_server_thread_del_method\fP (\fBlo_server_thread\fP st, const char *path, const char *typespec)"
+.br
+.RI "\fIDelete an OSC method from the specifed server thread\&. \fP"
+.ti -1c
+.RI "int \fBlo_server_thread_start\fP (\fBlo_server_thread\fP st)"
+.br
+.RI "\fIStart the server thread\&. \fP"
+.ti -1c
+.RI "int \fBlo_server_thread_stop\fP (\fBlo_server_thread\fP st)"
+.br
+.RI "\fIStop the server thread\&. \fP"
+.ti -1c
+.RI "int \fBlo_server_thread_get_port\fP (\fBlo_server_thread\fP st)"
+.br
+.RI "\fIReturn the port number that the server thread has bound to\&. \fP"
+.ti -1c
+.RI "char * \fBlo_server_thread_get_url\fP (\fBlo_server_thread\fP st)"
+.br
+.RI "\fIReturn a URL describing the address of the server thread\&. \fP"
+.ti -1c
+.RI "\fBlo_server\fP \fBlo_server_thread_get_server\fP (\fBlo_server_thread\fP st)"
+.br
+.RI "\fIReturn the lo_server for a lo_server_thread\&. \fP"
+.ti -1c
+.RI "int \fBlo_server_thread_events_pending\fP (\fBlo_server_thread\fP st)"
+.br
+.RI "\fIReturn true if there are scheduled events (eg\&. from bundles) waiting to be dispatched by the thread\&. \fP"
+.ti -1c
+.RI "\fBlo_blob\fP \fBlo_blob_new\fP (int32_t size, const void *data)"
+.br
+.RI "\fICreate a new OSC blob type\&. \fP"
+.ti -1c
+.RI "void \fBlo_blob_free\fP (\fBlo_blob\fP b)"
+.br
+.RI "\fIFree the memory taken by a blob\&. \fP"
+.ti -1c
+.RI "uint32_t \fBlo_blob_datasize\fP (\fBlo_blob\fP b)"
+.br
+.RI "\fIReturn the amount of valid data in a lo_blob object\&. \fP"
+.ti -1c
+.RI "void * \fBlo_blob_dataptr\fP (\fBlo_blob\fP b)"
+.br
+.RI "\fIReturn a pointer to the start of the blob data to allow contents to be changed\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+The liblo main headerfile and high-level API functions\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for liblo from the source code\&.
